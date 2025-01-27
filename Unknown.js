@@ -48,8 +48,8 @@ const client = new Client({
     authStrategy: new LocalAuth({ clientId: "User01", dataPath: "./Sessoes" }),
     // proxyAuthentication: { username: 'username', password: 'password' },
     puppeteer: {
-        // executablePath: '/usr/bin/google-chrome',
         // args: ['--proxy-server=proxy-server-that-requires-authentication.example.com'],
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
         headless: true,
     }
 });
@@ -104,7 +104,7 @@ client.on('ready', async () => {
 
 // Inicializando o cliente
 client.initialize().catch((err) => {
-    logger.error('Erro ao inicializar o cliente do WhatsApp:', err.message);
+    logger.error('Erro ao inicializar o cliente do WhatsApp:', err);
 });
 
 // Controle de chamadas fora do horário comercial
